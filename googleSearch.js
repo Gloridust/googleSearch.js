@@ -21,7 +21,16 @@ async function googleSearch(query) {
         $('#search .g').each((index, element) => {
             const title = $(element).find('h3').text();
             const link = $(element).find('a').attr('href');
-            const snippet = $(element).find('.aCOpRe').text();
+            let snippet = '';
+
+            // 尝试获取包含摘要的元素
+            const snippetElement = $(element).find('.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb');
+
+            if (snippetElement.length > 0) {
+                // 提取文本内容，包括处理 <span> 和 <em> 标签
+                snippet = snippetElement.map((i, el) => $(el).text()).get().join(' ');
+            }
+
             if (title && link) {
                 results.push({ title, link, snippet });
             }
@@ -35,7 +44,7 @@ async function googleSearch(query) {
 }
 
 // 测试搜索功能
-googleSearch('puppeteer').then(results => {
+googleSearch('Gloridust').then(results => {
     console.log(results);
 }).catch(error => {
     console.error(error);
