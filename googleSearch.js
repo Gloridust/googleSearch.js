@@ -34,7 +34,11 @@ async function googleSearch(query, page = 1) {
             }
 
             if (title && link) {
-                results.push({ title, link, snippet });
+                results.push({ 
+                    "title": title, 
+                    "link": link, 
+                    "snippet": snippet 
+                });
             }
         });
 
@@ -47,7 +51,7 @@ async function googleSearch(query, page = 1) {
 
 // 测试搜索功能
 googleSearch('Gloridust', 1).then(results => {
-    console.log(results);
+    console.log(JSON.stringify(results, null, 2));
 }).catch(error => {
     console.error(error);
 });
