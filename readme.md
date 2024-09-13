@@ -1,4 +1,4 @@
-# Google Search Scraper
+# Google Search JS
 
 `googleSearch.js` 是一个基于 Node.js 的 Google 搜索结果抓取器。它使用 `axios` 来发送 HTTP 请求，并使用 `cheerio` 来解析 HTML，提取搜索结果的标题、链接和摘要。
 
