@@ -1,10 +1,12 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-async function googleSearch(query) {
+async function googleSearch(query, page = 1) {
     try {
+        // 每页显示 10 个结果，计算起始位置
+        const start = (page - 1) * 10;
         // 构建搜索 URL
-        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&start=${start}`;
 
         // 发送 GET 请求获取搜索结果页面的 HTML
         const { data } = await axios.get(searchUrl, {
@@ -44,7 +46,7 @@ async function googleSearch(query) {
 }
 
 // 测试搜索功能
-googleSearch('Gloridust').then(results => {
+googleSearch('Gloridust', 1).then(results => {
     console.log(results);
 }).catch(error => {
     console.error(error);
